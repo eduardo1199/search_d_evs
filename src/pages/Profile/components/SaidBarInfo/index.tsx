@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 interface SaidBarInfoProps {
   icon: ReactNode
-  text: string
+  text: string | null
 }
 
 export function SaidBarInfo({ icon, text }: SaidBarInfoProps) {
