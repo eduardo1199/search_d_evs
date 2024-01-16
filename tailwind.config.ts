@@ -17,6 +17,7 @@ module.exports = {
       white: '#FFFFFF',
       'gray-200': '#E2E8F0',
       'gray-400': '#A0AEC0',
+      'gray-600': '#4A5568',
     },
     container: {
       center: true,
