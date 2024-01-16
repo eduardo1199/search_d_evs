@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "@rocketseat/eslint-config/react"
+    
+  ],
+  "rules": {
+    "camelcase": "off",
+    "react/display-name": "off"
+  }
+}
