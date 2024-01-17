@@ -18,7 +18,7 @@ export function Repository({
       <strong className="font-bold text-xl">{repositoryName}</strong>
 
       <p className="text-gray-600 font-normal">
-        {descriptionRepository ?? 'Descrição do repositório não informado.'}
+        {descriptionRepository ?? 'Descrição do repositório não informada.'}
       </p>
 
       <div className="flex gap-2 text-gray-600 text-sm items-center">

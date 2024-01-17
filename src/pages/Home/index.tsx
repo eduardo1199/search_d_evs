@@ -14,7 +14,7 @@ export function Home() {
       return
     }
 
-    navigate(`/profile/${search}`)
+    navigate(`/perfil/${search}`)
   }
 
   return (

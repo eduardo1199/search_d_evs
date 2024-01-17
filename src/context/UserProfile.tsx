@@ -1,4 +1,5 @@
 import { api } from '@/lib/api'
+import { compareStarsTheRepositories } from '@/utils'
 import {
   ReactNode,
   createContext,
@@ -75,10 +76,12 @@ export function UserProfileContextProvider(
     } else {
       Promise.all([getUserProfile(), getUserRepositories()])
         .then(([responseUserProfile, responseRepository]) => {
-          console.log(responseUserProfile, responseRepository)
+          const orderByRepositoriesWithStars = responseRepository.sort(
+            compareStarsTheRepositories,
+          )
 
+          setRepositories(orderByRepositoriesWithStars)
           setUser(responseUserProfile)
-          setRepositories(responseRepository)
 
           setIsLoading(false)
         })

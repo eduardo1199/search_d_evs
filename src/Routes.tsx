@@ -5,11 +5,11 @@ import { UserProfileContextProvider } from './context/UserProfile'
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/home',
     element: <Home />,
   },
   {
-    path: '/profile/:username',
+    path: '/perfil/:username',
     element: (
       <UserProfileContextProvider>
         <Profile />

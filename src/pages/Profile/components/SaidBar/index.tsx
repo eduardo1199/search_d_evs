@@ -9,10 +9,10 @@ import {
   UsersThree,
   Buildings,
 } from '@phosphor-icons/react'
-import { SaidBarInfo } from '../SaidBarInfo'
 import { UserProfileContext } from '@/context/UserProfile'
 import { useContext } from 'react'
 import { Skeleton } from '@/components/Skeleton'
+import { SocialMediaUser } from '@/pages/Profile/components/SocialMediaUser'
 
 export function SideBar() {
   const { isLoading, user } = useContext(UserProfileContext)
@@ -26,7 +26,7 @@ export function SideBar() {
       <div className="flex flex-col gap-4 p-4 mb-10">
         {isLoading ? (
           <div className="flex gap-4 mt-20">
-            <Skeleton className="w-12 h-12 rounded-full" />
+            <Skeleton className="w-14 h-10 rounded-full" />
             <div className="flex flex-col gap-2 w-full">
               <Skeleton className="w-full h-9" />
               <Skeleton className="w-full h-5" />
@@ -53,7 +53,9 @@ export function SideBar() {
         {isLoading ? (
           <Skeleton className="w-full h-20" />
         ) : (
-          <p className="text-base font-normal text-gray-600 mb-6">{user.bio}</p>
+          <p className="text-base font-normal text-gray-600 mb-6">
+            {user.bio ?? 'Não informado'}
+          </p>
         )}
 
         {isLoading ? (
@@ -63,14 +65,14 @@ export function SideBar() {
           </div>
         ) : (
           <div className="flex flex-col gap-2 mb-7">
-            <SaidBarInfo
-              icon={<UsersThree size={24} />}
-              text={`${user.followers} seguidores`}
-            />
-            <SaidBarInfo
-              icon={<Heart size={24} />}
-              text={`${user.following} seguindo`}
-            />
+            <SocialMediaUser.Root>
+              <UsersThree size={24} />
+              <SocialMediaUser.Label>{`${user.followers} seguidores`}</SocialMediaUser.Label>
+            </SocialMediaUser.Root>
+            <SocialMediaUser.Root>
+              <Heart size={24} />
+              <SocialMediaUser.Label>{`${user.following} seguindo`}</SocialMediaUser.Label>
+            </SocialMediaUser.Root>
           </div>
         )}
 
@@ -83,17 +85,48 @@ export function SideBar() {
           </div>
         ) : (
           <div className="flex flex-col gap-2">
-            <SaidBarInfo icon={<Buildings size={24} />} text={null} />
-            <SaidBarInfo icon={<MapPin size={24} />} text={user.location} />
-            <SaidBarInfo
-              icon={<EnvelopeSimple size={24} />}
-              text={user.email}
-            />
-            <SaidBarInfo icon={<Link size={24} />} text={user.blog} />
-            <SaidBarInfo
-              icon={<TwitterLogo size={24} />}
-              text={`@${user.twitter_username}`}
-            />
+            <SocialMediaUser.Root>
+              <Buildings size={24} />
+              <SocialMediaUser.Label>
+                {user.company ?? 'Não informado'}
+              </SocialMediaUser.Label>
+            </SocialMediaUser.Root>
+
+            <SocialMediaUser.Root>
+              <MapPin size={24} />
+              <SocialMediaUser.Label>
+                {user.location ?? 'Não informado'}
+              </SocialMediaUser.Label>
+            </SocialMediaUser.Root>
+
+            <SocialMediaUser.Root>
+              <EnvelopeSimple size={24} />
+              <SocialMediaUser.Label>
+                {user.email ?? 'Não informado'}
+              </SocialMediaUser.Label>
+            </SocialMediaUser.Root>
+
+            <SocialMediaUser.Root>
+              <Link size={24} />
+              <SocialMediaUser.Link href={user.blog ? user.blog : undefined}>
+                {user.blog ? user.blog : 'Não informado'}
+              </SocialMediaUser.Link>
+            </SocialMediaUser.Root>
+
+            <SocialMediaUser.Root>
+              <TwitterLogo size={24} />
+              <SocialMediaUser.Link
+                href={
+                  user.twitter_username
+                    ? `https://twitter.com/${user.twitter_username}`
+                    : undefined
+                }
+              >
+                {user.twitter_username
+                  ? `@${user.twitter_username}`
+                  : 'Não informado'}
+              </SocialMediaUser.Link>
+            </SocialMediaUser.Root>
           </div>
         )}
       </div>
