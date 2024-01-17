@@ -14,7 +14,7 @@ export function Repository({
   update,
 }: RepositoryProps) {
   return (
-    <div className="flex flex-col gap-4 items-start border-b border-gray-200 pb-4">
+    <div className="flex flex-col gap-4 items-start border-b border-gray-200 pb-4 bg-white">
       <strong className="font-bold text-xl">{repositoryName}</strong>
 
       <p className="text-gray-600 font-normal">

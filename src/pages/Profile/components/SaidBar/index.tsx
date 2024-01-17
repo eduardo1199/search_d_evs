@@ -1,4 +1,3 @@
-import Logo from '@/assets/logo.svg'
 import { Button } from '@/components/Button'
 import {
   EnvelopeSimple,
@@ -20,7 +19,7 @@ export function SideBar() {
   return (
     <aside className="w-[280px] flex flex-col">
       <div className="flex flex-col gap-4 p-4 mb-10 bg-gray-white">
-        {!isLoading ? (
+        {isLoading ? (
           <div className="flex gap-4">
             <Skeleton className="w-14 h-10 rounded-full" />
             <div className="flex flex-col gap-2 w-full">
@@ -46,7 +45,7 @@ export function SideBar() {
           </div>
         )}
 
-        {!isLoading ? (
+        {isLoading ? (
           <Skeleton className="w-full h-20" />
         ) : (
           <p className="text-base font-normal text-gray-600 mb-6">
@@ -54,7 +53,7 @@ export function SideBar() {
           </p>
         )}
 
-        {!isLoading ? (
+        {isLoading ? (
           <div className="flex flex-col gap-2 mb-7">
             <Skeleton className="w-full h-10" />
             <Skeleton className="w-full h-10" />
@@ -72,7 +71,7 @@ export function SideBar() {
           </div>
         )}
 
-        {!isLoading ? (
+        {isLoading ? (
           <div className="flex flex-col gap-2">
             <Skeleton className="w-full h-10" />
             <Skeleton className="w-full h-10" />

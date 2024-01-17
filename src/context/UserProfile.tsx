@@ -116,7 +116,7 @@ export function UserProfileContextProvider(
                 ),
               })
 
-              /* navigate('/home') */
+              navigate('/home')
               setIsLoading(false)
             }
           }

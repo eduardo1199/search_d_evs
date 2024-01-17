@@ -16,7 +16,7 @@ export function Profile() {
         <SideBar />
 
         <div className="flex flex-col gap-4 w-full flex-1">
-          {!isLoading &&
+          {isLoading &&
             Array(10)
               .fill(null)
               .map((_, index) => {
@@ -30,7 +30,7 @@ export function Profile() {
                 )
               })}
 
-          {isLoading &&
+          {!isLoading &&
             repositories.map((repo) => {
               return (
                 <Repository
