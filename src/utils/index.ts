@@ -17,10 +17,12 @@ export function compareStarsTheRepositories(
   return 0
 }
 
-export function formattedDate(date: string) {
-  const parsedDate = new Date(date)
+export function formattedDate(dateIsoString: string) {
+  const parsedDate = new Date(dateIsoString)
 
-  const formatted = formatDistance(parsedDate, new Date(), {
+  const currentDate = new Date()
+
+  const formatted = formatDistance(parsedDate, currentDate, {
     locale: ptBR,
   })
 
