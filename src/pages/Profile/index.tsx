@@ -1,27 +1,22 @@
-import { Input } from '@/components/Input'
 import { SideBar } from './components/SaidBar'
 import { Repository } from './components/Repository'
 import { useContext } from 'react'
 import { UserProfileContext } from '@/context/UserProfile'
-import { useParams } from 'react-router-dom'
 import { Skeleton } from '@/components/Skeleton'
+import { Header } from './components/Header'
 
 export function Profile() {
   const { isLoading, repositories } = useContext(UserProfileContext)
 
-  const { username } = useParams()
-
   return (
-    <div className="w-full h-screen px-[112px] pb-14 mt-5 flex gap-14">
-      <SideBar />
+    <div className="w-full h-screen pb-14 flex flex-col bg-gray-100">
+      <Header />
 
-      <main className="flex flex-1 flex-col">
-        <div className="w-full">
-          <Input className="min-w-[590px]" value={username} autoFocus />
-        </div>
+      <main className="flex w-full gap-8 px-[112px] mt-20">
+        <SideBar />
 
-        <div className="mt-20 flex flex-col gap-4">
-          {isLoading ? (
+        <div className="flex flex-col gap-4 w-full flex-1">
+          {!isLoading &&
             Array(10)
               .fill(null)
               .map((_, index) => {
@@ -33,12 +28,9 @@ export function Profile() {
                     <Skeleton className="h-28 w-full" />
                   </div>
                 )
-              })
-          ) : (
-            <></>
-          )}
+              })}
 
-          {!isLoading &&
+          {isLoading &&
             repositories.map((repo) => {
               return (
                 <Repository

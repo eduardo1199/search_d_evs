@@ -19,13 +19,9 @@ export function SideBar() {
 
   return (
     <aside className="w-[280px] flex flex-col">
-      <div className="w-[190px] h-11">
-        <img src={Logo} alt="Search d_evs" className="size-min" />
-      </div>
-
-      <div className="flex flex-col gap-4 p-4 mb-10">
-        {isLoading ? (
-          <div className="flex gap-4 mt-20">
+      <div className="flex flex-col gap-4 p-4 mb-10 bg-gray-white">
+        {!isLoading ? (
+          <div className="flex gap-4">
             <Skeleton className="w-14 h-10 rounded-full" />
             <div className="flex flex-col gap-2 w-full">
               <Skeleton className="w-full h-9" />
@@ -33,7 +29,7 @@ export function SideBar() {
             </div>
           </div>
         ) : (
-          <div className="flex gap-4 mt-20">
+          <div className="flex gap-4">
             <img
               src={user.avatar_url!}
               alt="profile"
@@ -50,7 +46,7 @@ export function SideBar() {
           </div>
         )}
 
-        {isLoading ? (
+        {!isLoading ? (
           <Skeleton className="w-full h-20" />
         ) : (
           <p className="text-base font-normal text-gray-600 mb-6">
@@ -58,7 +54,7 @@ export function SideBar() {
           </p>
         )}
 
-        {isLoading ? (
+        {!isLoading ? (
           <div className="flex flex-col gap-2 mb-7">
             <Skeleton className="w-full h-10" />
             <Skeleton className="w-full h-10" />
@@ -76,7 +72,7 @@ export function SideBar() {
           </div>
         )}
 
-        {isLoading ? (
+        {!isLoading ? (
           <div className="flex flex-col gap-2">
             <Skeleton className="w-full h-10" />
             <Skeleton className="w-full h-10" />

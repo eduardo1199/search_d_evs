@@ -108,7 +108,7 @@ export function UserProfileContextProvider(
               toast({
                 variant: 'destructive',
                 title: 'Parece que deu algo errado!',
-                description: 'API do github não funcionou como esperado!',
+                description: error.response?.data.message,
                 action: (
                   <ToastAction altText="Tente novamente">
                     Tente Novamente
@@ -116,7 +116,7 @@ export function UserProfileContextProvider(
                 ),
               })
 
-              navigate('/home')
+              /* navigate('/home') */
               setIsLoading(false)
             }
           }
