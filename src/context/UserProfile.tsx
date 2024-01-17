@@ -1,5 +1,8 @@
+import { ToastAction } from '@/components/ui/toast'
+import { useToast } from '@/components/ui/use-toast'
 import { api } from '@/lib/api'
 import { compareStarsTheRepositories } from '@/utils'
+import { AxiosError } from 'axios'
 import {
   ReactNode,
   createContext,
@@ -55,6 +58,7 @@ export function UserProfileContextProvider(
 
   const { username } = useParams()
   const navigate = useNavigate()
+  const { toast } = useToast()
 
   const getUserProfile = useCallback(async () => {
     const response = await api.get<UserProfileData>(`${username}`)
@@ -72,7 +76,7 @@ export function UserProfileContextProvider(
     setIsLoading(true)
 
     if (!username) {
-      navigate('/')
+      navigate('/home')
     } else {
       Promise.all([getUserProfile(), getUserRepositories()])
         .then(([responseUserProfile, responseRepository]) => {
@@ -85,14 +89,40 @@ export function UserProfileContextProvider(
 
           setIsLoading(false)
         })
-        .catch((err) => {
-          console.log(err)
-          setIsLoading(false)
+        .catch((error) => {
+          if (error instanceof AxiosError) {
+            if (error.response?.status === 404) {
+              toast({
+                variant: 'destructive',
+                title: 'Parece que deu algo errado!',
+                description: 'Usuário não encontrado!',
+                action: (
+                  <ToastAction altText="Tente novamente">
+                    Tente Novamente
+                  </ToastAction>
+                ),
+              })
+
+              navigate('/home')
+            } else {
+              toast({
+                variant: 'destructive',
+                title: 'Parece que deu algo errado!',
+                description: 'API do github não funcionou como esperado!',
+                action: (
+                  <ToastAction altText="Tente novamente">
+                    Tente Novamente
+                  </ToastAction>
+                ),
+              })
+
+              navigate('/home')
+              setIsLoading(false)
+            }
+          }
         })
     }
-  }, [getUserProfile, getUserRepositories, navigate, username])
-
-  console.log(username)
+  }, [getUserProfile, getUserRepositories, navigate, username, toast])
 
   return (
     <UserProfileContext.Provider value={{ user, repositories, isLoading }}>
