@@ -6,7 +6,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   server: {
-    open: '/home',
+    open: true,
   },
   resolve: {
     alias: {
