@@ -1,5 +1,5 @@
 import { SideBar } from './components/SaidBar'
-import { Repository } from './components/Repository'
+import { RepositoryLink } from './components/RepositoryLink'
 import { useContext } from 'react'
 import { UserProfileContext } from '@/context/UserProfile'
 import { Skeleton } from '@/components/Skeleton'
@@ -32,15 +32,7 @@ export function Profile() {
 
           {!isLoading &&
             repositories.map((repo) => {
-              return (
-                <Repository
-                  key={repo.id}
-                  descriptionRepository={repo.description}
-                  numberOfStars={repo.stargazers_count}
-                  repositoryName={repo.name}
-                  update={repo.updated_at}
-                />
-              )
+              return <RepositoryLink repo={repo} key={repo.id} />
             })}
         </div>
       </main>

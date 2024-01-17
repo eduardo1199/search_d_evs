@@ -1,6 +1,7 @@
 import { ToastAction } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/use-toast'
 import { api } from '@/lib/api'
+import { Repository } from '@/types'
 import { compareStarsTheRepositories } from '@/utils'
 import { AxiosError } from 'axios'
 import {
@@ -25,14 +26,6 @@ type UserProfileData = {
   blog: string | null
   company: string | null
   login: string | null
-}
-
-type Repository = {
-  name: string
-  description: string | null
-  stargazers_count: number
-  updated_at: string
-  id: number
 }
 
 type UserProfileContextData = {

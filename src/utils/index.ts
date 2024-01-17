@@ -1,9 +1,13 @@
+import { formatDistance } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
+
 type Repository = {
   name: string
   description: string | null
   stargazers_count: number
   updated_at: string
   id: number
+  url: string
 }
 
 export function compareStarsTheRepositories(
@@ -19,4 +23,14 @@ export function compareStarsTheRepositories(
   }
 
   return 0
+}
+
+export function formattedDate(date: string) {
+  const parsedDate = new Date(date)
+
+  const formatted = formatDistance(parsedDate, new Date(), {
+    locale: ptBR,
+  })
+
+  return formatted
 }
