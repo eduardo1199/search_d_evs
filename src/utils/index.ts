@@ -1,14 +1,6 @@
+import { Repository } from '@/types'
 import { formatDistance } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-
-type Repository = {
-  name: string
-  description: string | null
-  stargazers_count: number
-  updated_at: string
-  id: number
-  url: string
-}
 
 export function compareStarsTheRepositories(
   repositoryFirts: Repository,
