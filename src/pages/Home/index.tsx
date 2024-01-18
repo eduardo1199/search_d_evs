@@ -1,7 +1,7 @@
 import Logo from '@/assets/logo.svg'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export function Home() {
@@ -9,7 +9,9 @@ export function Home() {
 
   const navigate = useNavigate()
 
-  async function handleSearchSubmit() {
+  async function handleSearchSubmit(event: FormEvent) {
+    event.preventDefault()
+
     if (!search.trim()) {
       return
     }
@@ -22,20 +24,19 @@ export function Home() {
       <div className="w-full flex flex-col gap-14 justify-center items-center">
         <img src={Logo} alt="Search d_evs" className="size-fit sm:w-[240px]" />
 
-        <div className="w-full flex sm:flex-col gap-9 justify-center items-center px-3">
+        <form
+          className="w-full flex sm:flex-col gap-9 justify-center items-center px-3"
+          onSubmit={handleSearchSubmit}
+        >
           <Input
             placeholder="Search"
             onChange={(event) => setSearch(event.target.value)}
           />
 
-          <Button.Root
-            type="button"
-            onClick={handleSearchSubmit}
-            className="sm:w-full"
-          >
+          <Button.Root type="submit" className="sm:w-full">
             <Button.Text>Search</Button.Text>
           </Button.Root>
-        </div>
+        </form>
       </div>
     </div>
   )
