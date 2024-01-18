@@ -14,12 +14,12 @@ export function Header() {
   }
 
   return (
-    <header className="flex px-[112px] gap-[120px] items-center bg-white py-5">
+    <header className="flex px-[112px] gap-[120px] md:gap-0 items-center bg-white py-5 fixed w-full md:px-4">
       <div className="flex items-center">
         <img
           src={Logo}
           alt="Search d_evs"
-          className="size-min max-w-[190px] max-h-11"
+          className="size-min max-w-[190px] max-h-11 md:hidden"
         />
       </div>
 
@@ -27,7 +27,7 @@ export function Header() {
         <button onClick={handleNavigateToHomePage}>
           <ArrowLeft size={25} className="text-primary-pink" />
         </button>
-        <Input className="max-w-[590px]" value={username} autoFocus />
+        <Input value={username} autoFocus />
       </div>
     </header>
   )

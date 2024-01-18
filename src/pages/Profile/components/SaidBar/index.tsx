@@ -17,7 +17,7 @@ export function SideBar() {
   const { isLoading, user } = useContext(UserProfileContext)
 
   return (
-    <aside className="w-[280px] flex flex-col">
+    <aside className="w-[280px] flex flex-col md:mx-auto md:w-auto">
       <div className="flex flex-col gap-4 p-4 mb-10 bg-gray-white">
         {isLoading ? (
           <div className="flex gap-4">

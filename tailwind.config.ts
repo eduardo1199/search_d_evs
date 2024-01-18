@@ -20,6 +20,10 @@ module.exports = {
       'gray-400': '#A0AEC0',
       'gray-600': '#4A5568',
     },
+    screens: {
+      sm: { max: '320px' },
+      md: { max: '768px' },
+    },
     container: {
       center: true,
       padding: '2rem',
