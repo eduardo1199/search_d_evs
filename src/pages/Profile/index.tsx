@@ -9,10 +9,10 @@ export function Profile() {
   const { isLoading, repositories } = useContext(UserProfileContext)
 
   return (
-    <div className="w-full h-screen pb-14 flex flex-col bg-gray-100">
+    <div className="w-full h-screen pb-14 flex flex-col bg-gray-100 relative">
       <Header />
 
-      <main className="flex w-full gap-8 px-[112px] mt-20">
+      <main className="flex  md:flex-col md:p-3 w-full gap-8 px-[112px] md:mt-20 mt-[160px]">
         <SideBar />
 
         <div className="flex flex-col gap-4 w-full flex-1">
